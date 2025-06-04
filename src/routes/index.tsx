@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import Window from "../widgets/window";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -6,8 +7,8 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div>
-      <h3>welcome home</h3>
-    </div>
+    <>
+      <Window />
+    </>
   );
 }
