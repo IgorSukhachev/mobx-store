@@ -15,9 +15,21 @@ class ProductsStore {
   products: IProduct[] = [];
   loading = false;
   error: string | null = null;
+  searchQuery = "";
 
   constructor() {
     makeAutoObservable(this);
+  }
+
+  setSearchQuery(query: string) {
+    this.searchQuery = query.toLowerCase();
+  }
+
+  get filteredProducts() {
+    if (!this.searchQuery) return this.products;
+    return this.products.filter((product) =>
+      product.title.toLowerCase().includes(this.searchQuery),
+    );
   }
 
   async loadProducts() {

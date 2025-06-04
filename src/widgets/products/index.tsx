@@ -22,10 +22,12 @@ const Products = observer(() => {
 
   return (
     <ProductWrapper>
-      <ProductTitle>Все товары</ProductTitle>
-      <Search />
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <ProductTitle>Все товары</ProductTitle>
+        <Search />
+      </div>
       <ProductsGrid>
-        {productsStore.products.map((product) => (
+        {productsStore.filteredProducts.map((product) => (
           <ProductCard
             key={product.id}
             id={product.id}
