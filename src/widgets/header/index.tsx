@@ -21,8 +21,8 @@ const Header = () => {
       <LogoStyled>
         <img src={logo} alt='logo icon' />
         <div>
-          <StyledLink to='/'>React sneakers</StyledLink>
-          <StyledSubLink>Магазин лучших кроссовок</StyledSubLink>
+          <StyledLink to='/'>React goods</StyledLink>
+          <StyledSubLink>Магазин лучших товаров</StyledSubLink>
         </div>
       </LogoStyled>
       <NavigationBar>
