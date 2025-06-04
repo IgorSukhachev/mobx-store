@@ -2,14 +2,21 @@ import { observer } from "mobx-react-lite";
 import Search from "../../shared/ui/search";
 import ProductCard from "../../shared/ui/card";
 import { productsStore } from "../../store/productsStore";
-import { ProductWrapper, ProductTitle, ProductsGrid } from "./styles";
+import { ProductWrapper, ProductTitle, ProductsGrid, Spinner } from "./styles";
 import { useEffect } from "react";
+import { ClipLoader } from "react-spinners";
 
 const Products = observer(() => {
   useEffect(() => {
     productsStore.loadProducts();
   }, []);
-  if (productsStore.loading) return <div>Загрузка...</div>;
+
+  if (productsStore.loading)
+    return (
+      <Spinner>
+        <ClipLoader size={150} />
+      </Spinner>
+    );
   if (productsStore.error) return <div>Ошибка загрузки...</div>;
   if (productsStore.products.length === 0) return <div>Нет доступных товаров</div>;
 

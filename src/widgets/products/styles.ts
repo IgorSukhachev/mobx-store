@@ -15,3 +15,11 @@ export const ProductsGrid = styled.div`
   gap: 34px;
   padding: 30px 0;
 `;
+
+export const Spinner = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 100%;
+`;

@@ -11,14 +11,22 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as AboutImport } from './routes/about'
+import { Route as ProductImport } from './routes/product'
+import { Route as FavoritesImport } from './routes/favorites'
 import { Route as IndexImport } from './routes/index'
+import { Route as ProductProductIdImport } from './routes/product.$productId'
 
 // Create/Update Routes
 
-const AboutRoute = AboutImport.update({
-  id: '/about',
-  path: '/about',
+const ProductRoute = ProductImport.update({
+  id: '/product',
+  path: '/product',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const FavoritesRoute = FavoritesImport.update({
+  id: '/favorites',
+  path: '/favorites',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -26,6 +34,12 @@ const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
+} as any)
+
+const ProductProductIdRoute = ProductProductIdImport.update({
+  id: '/$productId',
+  path: '/$productId',
+  getParentRoute: () => ProductRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -39,51 +53,84 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutImport
+    '/favorites': {
+      id: '/favorites'
+      path: '/favorites'
+      fullPath: '/favorites'
+      preLoaderRoute: typeof FavoritesImport
       parentRoute: typeof rootRoute
+    }
+    '/product': {
+      id: '/product'
+      path: '/product'
+      fullPath: '/product'
+      preLoaderRoute: typeof ProductImport
+      parentRoute: typeof rootRoute
+    }
+    '/product/$productId': {
+      id: '/product/$productId'
+      path: '/$productId'
+      fullPath: '/product/$productId'
+      preLoaderRoute: typeof ProductProductIdImport
+      parentRoute: typeof ProductImport
     }
   }
 }
 
 // Create and export the route tree
 
+interface ProductRouteChildren {
+  ProductProductIdRoute: typeof ProductProductIdRoute
+}
+
+const ProductRouteChildren: ProductRouteChildren = {
+  ProductProductIdRoute: ProductProductIdRoute,
+}
+
+const ProductRouteWithChildren =
+  ProductRoute._addFileChildren(ProductRouteChildren)
+
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/favorites': typeof FavoritesRoute
+  '/product': typeof ProductRouteWithChildren
+  '/product/$productId': typeof ProductProductIdRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/favorites': typeof FavoritesRoute
+  '/product': typeof ProductRouteWithChildren
+  '/product/$productId': typeof ProductProductIdRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/favorites': typeof FavoritesRoute
+  '/product': typeof ProductRouteWithChildren
+  '/product/$productId': typeof ProductProductIdRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths: '/' | '/favorites' | '/product' | '/product/$productId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to: '/' | '/favorites' | '/product' | '/product/$productId'
+  id: '__root__' | '/' | '/favorites' | '/product' | '/product/$productId'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
+  FavoritesRoute: typeof FavoritesRoute
+  ProductRoute: typeof ProductRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
+  FavoritesRoute: FavoritesRoute,
+  ProductRoute: ProductRouteWithChildren,
 }
 
 export const routeTree = rootRoute
@@ -97,14 +144,25 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/about"
+        "/favorites",
+        "/product"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/about": {
-      "filePath": "about.tsx"
+    "/favorites": {
+      "filePath": "favorites.tsx"
+    },
+    "/product": {
+      "filePath": "product.tsx",
+      "children": [
+        "/product/$productId"
+      ]
+    },
+    "/product/$productId": {
+      "filePath": "product.$productId.tsx",
+      "parent": "/product"
     }
   }
 }

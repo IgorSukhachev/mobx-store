@@ -1,6 +1,8 @@
 import { observer } from "mobx-react-lite";
 import { CardImage, Card, CardTitle, CardPrice, CardAmount, CardBottom } from "./styles";
-import Button from "../button";
+import CartButton from "../cartButton";
+import { Link } from "@tanstack/react-router";
+import FavoriteButton from "../favoriteButton";
 
 interface CardProps {
   id: number;
@@ -19,14 +21,17 @@ const ProductCard = observer(({ id, title, price, image }: CardProps) => {
 
   return (
     <Card>
-      <CardImage src={image} alt={title} />
-      <CardTitle>{truncateTitle(title)}</CardTitle>
+      <FavoriteButton productId={id} />
+      <Link to='/product/$productId' params={{ productId: id.toString() }}>
+        <CardImage src={image} alt={title} />
+        <CardTitle>{truncateTitle(title)}</CardTitle>
+      </Link>
       <CardBottom>
         <div>
           <CardPrice>цена:</CardPrice>
-          <CardAmount>{price} руб.</CardAmount>
+          <CardAmount>{price} ₽</CardAmount>
         </div>
-        <Button productId={id} />
+        <CartButton productId={id} />
       </CardBottom>
     </Card>
   );

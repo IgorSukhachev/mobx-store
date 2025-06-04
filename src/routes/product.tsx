@@ -1,0 +1,6 @@
+import { createFileRoute } from "@tanstack/react-router";
+import ProductPage from "../widgets/productPage";
+
+export const Route = createFileRoute("/product")({
+  component: ProductPage,
+});

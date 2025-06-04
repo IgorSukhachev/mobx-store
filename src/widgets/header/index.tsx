@@ -13,13 +13,16 @@ import heartIcon from "../../shared/assets/icons/heart.svg";
 import profileIcon from "../../shared/assets/icons/profile.svg";
 
 import { Link } from "@tanstack/react-router";
+import { cartStore } from "../../store/cartStore";
+import { observer } from "mobx-react-lite";
 
-const Header = () => {
-  const amount: number = 12;
+const Header = observer(() => {
   return (
     <HeaderStyled>
       <LogoStyled>
-        <img src={logo} alt='logo icon' />
+        <Link to='/'>
+          <img src={logo} alt='logo icon' />
+        </Link>
         <div>
           <StyledLink to='/'>React goods</StyledLink>
           <StyledSubLink>Магазин лучших товаров</StyledSubLink>
@@ -27,20 +30,20 @@ const Header = () => {
       </LogoStyled>
       <NavigationBar>
         <Cart>
-          <Link to='/cart '>
+          <Link to='/cart'>
             <img src={cartIcon} alt='cart icon' />
           </Link>
-          <Amount>{amount} руб.</Amount>
+          <Amount>{cartStore.totalAmount} ₽</Amount>
         </Cart>
-        <Link to='/favorites '>
+        <Link to='/favorites'>
           <img src={heartIcon} alt='heart icon' width={20} height={20} />
         </Link>
-        <Link to='/profile '>
+        <Link to='/profile'>
           <img src={profileIcon} alt='heart icon' />
         </Link>
       </NavigationBar>
     </HeaderStyled>
   );
-};
+});
 
 export default Header;

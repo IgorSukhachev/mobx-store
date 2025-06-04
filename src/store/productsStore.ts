@@ -6,6 +6,9 @@ export interface IProduct {
   title: string;
   price: number;
   image: string;
+  description: string;
+  brand: string;
+  model: string;
 }
 
 class ProductsStore {

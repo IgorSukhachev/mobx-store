@@ -12,4 +12,8 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Inter', sans-serif;
 		background-color: #E7F6FF;
   }
+
+	a {
+	text-decoration: none;
+	}
 `;
