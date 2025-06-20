@@ -7,6 +7,7 @@ export const ProductWrapper = styled.section`
 export const ProductTitle = styled.h2`
   font-weight: 700;
   font-size: 32px;
+  color: #f5f5f5;
 `;
 
 export const ProductsGrid = styled.div`

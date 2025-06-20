@@ -1,16 +1,14 @@
 import styled from "styled-components";
 
 export const Card = styled.div`
-  border: 1px solid red;
   display: flex;
   gap: 14px;
   flex-direction: column;
-  //align-items: center;
   padding: 30px;
   width: 210px;
-  //height: 260px;
-  border: 1px solid #f3f3f3;
+  border: 1px solid #4e576a;
   border-radius: 40px;
+  background-color: #bfc6d4;
 `;
 
 export const CardImage = styled.img`
@@ -22,7 +20,7 @@ export const CardImage = styled.img`
 
 export const CardTitle = styled.p`
   font-size: 14px;
-  color: #000;
+  color: #0a0e15;
   font-weight: 400;
   max-width: 150px;
   text-decoration: none;
@@ -34,13 +32,14 @@ export const CardBottom = styled.div`
 `;
 
 export const CardPrice = styled.p`
-  color: #bdbdbd;
+  color: #373f4e;
   font-weight: 500;
   font-size: 11px;
   text-transform: uppercase;
 `;
 
 export const CardAmount = styled.p`
-  color: #000;
+  color: #0a0e15;
+  font-size: 14px;
   font-weight: 700;
 `;
