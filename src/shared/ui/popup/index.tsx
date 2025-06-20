@@ -55,10 +55,10 @@ const Popup = observer(() => {
                 <Item key={product?.id}>
                   <ItemImage src={product?.image || img} />
                   <ItemWrapper>
-                    <ItemTitle>{truncateTitle(product?.title)}</ItemTitle>
+                    <ItemTitle>{truncateTitle(product?.title ?? "")}</ItemTitle>
                     <ItemPrice>{product?.price} руб.</ItemPrice>
                   </ItemWrapper>
-                  <CartButton productId={product.id} />
+                  <CartButton productId={product?.id ?? 0} />
                 </Item>
               ))}
             </Items>

@@ -5,7 +5,6 @@ import { productsStore } from "../../store/productsStore";
 import { ProductWrapper, ProductTitle, ProductsGrid, Spinner } from "./styles";
 import { useEffect } from "react";
 import { ClipLoader } from "react-spinners";
-import Popup from "../../shared/ui/popup";
 
 const Products = observer(() => {
   useEffect(() => {
