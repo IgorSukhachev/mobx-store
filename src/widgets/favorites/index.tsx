@@ -20,9 +20,12 @@ const FavoritesPage = observer(() => {
 
   if (productsStore.loading)
     return (
-      <Spinner>
-        <ClipLoader size={150} />
-      </Spinner>
+      <WindowStyled>
+        <Header />
+        <Spinner>
+          <ClipLoader size={150} />
+        </Spinner>
+      </WindowStyled>
     );
   return (
     <WindowStyled>
