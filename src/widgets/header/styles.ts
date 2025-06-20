@@ -35,6 +35,18 @@ export const NavigationBar = styled.nav`
 export const Cart = styled.div`
   display: flex;
   gap: 10px;
+
+  &:hover {
+    transition: opacity 0.4s ease-in-out;
+    opacity: 0.7;
+  }
+`;
+
+export const NavBarLink = styled(Link)`
+  &:hover {
+    transition: opacity 0.4s ease-in-out;
+    opacity: 0.7;
+  }
 `;
 
 export const Amount = styled.p`

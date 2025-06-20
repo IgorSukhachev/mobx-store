@@ -161,4 +161,14 @@ export const OrderButton = styled.button`
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+
+  &:not(:disabled)hover {
+    transition: opacity 0.4s ease-in-out;
+    opacity: 0.7;
+  }
+
+  &:disabled {
+    background-color: grey;
+    cursor: default;
+  }
 `;

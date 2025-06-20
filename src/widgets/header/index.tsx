@@ -4,6 +4,7 @@ import {
   CartButton,
   HeaderStyled,
   LogoStyled,
+  NavBarLink,
   NavigationBar,
   StyledLink,
   StyledSubLink,
@@ -51,12 +52,12 @@ const Header = observer(() => {
             </CartButton>
             <Amount>{cartStore.totalAmount} ₽</Amount>
           </Cart>
-          <Link to='/favorites'>
+          <NavBarLink to='/favorites'>
             <img src={heartIcon} alt='heart icon' width={20} height={20} />
-          </Link>
-          <Link to='/profile'>
+          </NavBarLink>
+          <NavBarLink to='/profile'>
             <img src={profileIcon} alt='heart icon' />
-          </Link>
+          </NavBarLink>
         </NavigationBar>
       </HeaderStyled>
       {cartStore.isCartPopupOpen && <Popup />}

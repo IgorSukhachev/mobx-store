@@ -5,4 +5,10 @@ export const LikeButton = styled.button`
   height: 32px;
   border: none;
   background-color: transparent;
+  cursor: pointer;
+
+  &:hover {
+    transition: opacity 0.4s ease-in-out;
+    opacity: 0.7;
+  }
 `;

@@ -9,6 +9,15 @@ export const Card = styled.div`
   border: 1px solid #4e576a;
   border-radius: 40px;
   background-color: #9ba3b4;
+
+  &:hover {
+    transform: scale(1.14);
+    box-shadow: 0 9px 18px #fff;
+    position: relative;
+    transition:
+      box-shadow 0.2s ease-in-out,
+      transform 0.2s ease-in-out;
+  }
 `;
 
 export const CardImage = styled.img`
