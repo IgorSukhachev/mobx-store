@@ -3,6 +3,7 @@ import { productsStore } from "./productsStore";
 
 class CartStore {
   items: Set<number> = new Set();
+  isCartPopupOpen = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -31,6 +32,10 @@ class CartStore {
       }
     });
     return total;
+  }
+
+  toggleCartPopup() {
+    this.isCartPopupOpen = !this.isCartPopupOpen;
   }
 
   private loadFromLocalStorage() {

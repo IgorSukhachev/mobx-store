@@ -42,3 +42,9 @@ export const Amount = styled.p`
   font-weight: 600;
   font-size: 14px;
 `;
+
+export const CartButton = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+`;
