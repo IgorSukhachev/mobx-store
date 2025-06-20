@@ -15,6 +15,7 @@ import {
   Content,
   Wrapper,
   ItemsWrapper,
+  TotalLine,
 } from "./styles";
 
 import img from "../../assets/images/image5.png";
@@ -35,6 +36,13 @@ const Popup = observer(() => {
   const totalAmount = cartStore.totalAmount;
   const taxAmount = Math.round(totalAmount * 0.05);
 
+  const truncateTitle = (text: string, maxLength: number = 50) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + "...";
+    }
+    return text;
+  };
+
   return (
     <PopupWrapper onClick={closePopup}>
       <Content onClick={(e) => e.stopPropagation()}>
@@ -47,7 +55,7 @@ const Popup = observer(() => {
                 <Item key={product?.id}>
                   <ItemImage src={product?.image || img} />
                   <ItemWrapper>
-                    <ItemTitle>{product?.title}</ItemTitle>
+                    <ItemTitle>{truncateTitle(product?.title)}</ItemTitle>
                     <ItemPrice>{product?.price} руб.</ItemPrice>
                   </ItemWrapper>
                   <CartButton productId={product.id} />
@@ -59,10 +67,12 @@ const Popup = observer(() => {
         <TotalWrapper>
           <Total>
             <TotalText>Итого:</TotalText>
+            <TotalLine />
             <TotalPrice>{totalAmount.toLocaleString()} руб.</TotalPrice>
           </Total>
           <Total>
             <TotalText>Налог 5%:</TotalText>
+            <TotalLine />
             <TotalPrice>{taxAmount.toLocaleString()} руб.</TotalPrice>
           </Total>
           <OrderButton disabled={cartProducts.length === 0}>Оформить заказ</OrderButton>

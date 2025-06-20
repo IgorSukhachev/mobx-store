@@ -14,11 +14,12 @@ export const PopupWrapper = styled.div`
 export const Content = styled.div`
   width: 485px;
   height: 100vh;
-  background-color: #fff;
+  background-color: #4e576a;
   padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
 `;
 
 export const Wrapper = styled.div`
@@ -32,6 +33,7 @@ export const Wrapper = styled.div`
 export const Title = styled.p`
   font-size: 24px;
   font-weight: bold;
+  color: #fff;
 `;
 
 export const Items = styled.div`
@@ -40,16 +42,54 @@ export const Items = styled.div`
   gap: 20px;
   overflow-y: auto;
   max-height: calc(100vh-200px);
+  overflow-anchor: none;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #9ba3b4;
+    border-radius: 8px;
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: #9ba3b4 transparent;
 `;
 
 export const ItemsWrapper = styled.div`
   flex-grow: 1;
   overflow-y: auto;
   margin: 20px 0;
+  padding-right: 30px;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #9ba3b4;
+    border-radius: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #9ba3b4;
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: #9ba3b4 transparent;
 `;
 
 export const Item = styled.div`
-  border: 1px solid #f3f3f3;
+  background-color: #9ba3b4;
   border-radius: 20px;
   padding: 20px;
   display: flex;
@@ -66,11 +106,13 @@ export const ItemWrapper = styled.div`
 export const ItemTitle = styled.p`
   font-size: 14px;
   max-width: 150px;
+  color: #fff;
 `;
 
 export const ItemPrice = styled.p`
   font-size: 14px;
   font-weight: bold;
+  color: #fff;
 `;
 
 export const ItemImage = styled.img`
@@ -87,31 +129,22 @@ export const Total = styled.div`
   display: flex;
   margin: 10px 0;
   align-items: center;
-  justify-content: space-between;
-  position: relative;
-  padding-bottom: 4px;
   font-size: 16px;
-
-  &::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    border-bottom: 1px dotted #ccc;
-    z-index: 0;
-  }
-
-  span {
-    z-index: 1;
-    position: relative;
-    padding: 0 5px;
-  }
 `;
 
-export const TotalText = styled.span``;
+export const TotalText = styled.span`
+  color: #fff;
+`;
+
+export const TotalLine = styled.span`
+  flex-grow: 1;
+  border-bottom: 1px dotted #ccc;
+  margin: 0 8px;
+  transform: translateY(1px);
+`;
 
 export const TotalPrice = styled.span`
+  color: #fff;
   font-weight: 600;
 `;
 
@@ -127,4 +160,5 @@ export const OrderButton = styled.button`
   color: #fff;
   font-size: 16px;
   font-weight: 600;
+  cursor: pointer;
 `;
