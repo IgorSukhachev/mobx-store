@@ -18,11 +18,11 @@ import {
   TotalLine,
 } from "./styles";
 
-import img from "../../assets/images/image5.png";
 import CartButton from "../cartButton";
 import { cartStore } from "../../../store/cartStore";
 import { observer } from "mobx-react-lite";
 import { productsStore } from "../../../store/productsStore";
+import EmptyCart from "../emptyCart";
 
 const Popup = observer(() => {
   const closePopup = () => {
@@ -48,35 +48,41 @@ const Popup = observer(() => {
       <Content onClick={(e) => e.stopPropagation()}>
         <Wrapper>
           <Title>Корзина</Title>
-          <ItemsWrapper>
-            <Items>
-              {cartProducts.length === 0 && <p>Корзина пуста</p>}
-              {cartProducts.map((product) => (
-                <Item key={product?.id}>
-                  <ItemImage src={product?.image || img} />
-                  <ItemWrapper>
-                    <ItemTitle>{truncateTitle(product?.title ?? "")}</ItemTitle>
-                    <ItemPrice>{product?.price} руб.</ItemPrice>
-                  </ItemWrapper>
-                  <CartButton productId={product?.id ?? 0} />
-                </Item>
-              ))}
-            </Items>
-          </ItemsWrapper>
+          {cartProducts.length === 0 ? (
+            <EmptyCart />
+          ) : (
+            <>
+              <ItemsWrapper>
+                <Items>
+                  {cartProducts.map((product) => (
+                    <Item key={product?.id}>
+                      <ItemImage src={product?.image} />
+                      <ItemWrapper>
+                        <ItemTitle>{truncateTitle(product?.title ?? "")}</ItemTitle>
+                        <ItemPrice>{product?.price} руб.</ItemPrice>
+                      </ItemWrapper>
+                      <CartButton productId={product?.id ?? 0} />
+                    </Item>
+                  ))}
+                </Items>
+              </ItemsWrapper>
+
+              <TotalWrapper>
+                <Total>
+                  <TotalText>Итого:</TotalText>
+                  <TotalLine />
+                  <TotalPrice>{totalAmount.toLocaleString()} руб.</TotalPrice>
+                </Total>
+                <Total>
+                  <TotalText>Налог 5%:</TotalText>
+                  <TotalLine />
+                  <TotalPrice>{taxAmount.toLocaleString()} руб.</TotalPrice>
+                </Total>
+                <OrderButton>Оформить заказ</OrderButton>
+              </TotalWrapper>
+            </>
+          )}
         </Wrapper>
-        <TotalWrapper>
-          <Total>
-            <TotalText>Итого:</TotalText>
-            <TotalLine />
-            <TotalPrice>{totalAmount.toLocaleString()} руб.</TotalPrice>
-          </Total>
-          <Total>
-            <TotalText>Налог 5%:</TotalText>
-            <TotalLine />
-            <TotalPrice>{taxAmount.toLocaleString()} руб.</TotalPrice>
-          </Total>
-          <OrderButton disabled={cartProducts.length === 0}>Оформить заказ</OrderButton>
-        </TotalWrapper>
       </Content>
     </PopupWrapper>
   );

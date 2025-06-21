@@ -1,4 +1,3 @@
-// routes/product.$productId.tsx
 import { createFileRoute } from "@tanstack/react-router";
 import ProductPage from "../widgets/productPage";
 

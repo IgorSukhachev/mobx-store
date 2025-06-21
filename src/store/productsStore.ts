@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import { fetchProducts } from "../shared/api/products";
 
 export interface IProduct {
@@ -37,11 +37,17 @@ class ProductsStore {
     this.error = null;
     try {
       const data = await fetchProducts();
-      this.products = data.products || data;
+      runInAction(() => {
+        this.products = data.products || data;
+      });
     } catch (error) {
-      this.error = error instanceof Error ? error.message : "Unknown error";
+      runInAction(() => {
+        this.error = error instanceof Error ? error.message : "Unknown error";
+      });
     } finally {
-      this.loading = false;
+      runInAction(() => {
+        this.loading = false;
+      });
     }
   }
 }
