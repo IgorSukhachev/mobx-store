@@ -8,6 +8,7 @@ import { favoriteStore } from "../../store/favoriteStore";
 import { ClipLoader } from "react-spinners";
 import { ProductsGrid, Spinner } from "../products/styles";
 import ProductCard from "../../shared/ui/card";
+import EmptyFavorites from "../../shared/ui/emptyFavorites";
 
 const FavoritesPage = observer(() => {
   useEffect(() => {
@@ -33,7 +34,7 @@ const FavoritesPage = observer(() => {
       <Favorites>
         <FavoritesTitle>Мои закладки</FavoritesTitle>
         {favoriteProducts.length === 0 ? (
-          <div style={{ textAlign: "center", padding: "40px" }}>В избранном пока нет товаров</div>
+          <EmptyFavorites />
         ) : (
           <ProductsGrid>
             {favoriteProducts.map((product) => (
